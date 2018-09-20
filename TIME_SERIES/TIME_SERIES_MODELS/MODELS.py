@@ -136,7 +136,7 @@ def TIME_SERIES_ALGO(df,bool_stat):
 
 
 
-        train,test = train_test_split(df_log)
+
 
 
 
