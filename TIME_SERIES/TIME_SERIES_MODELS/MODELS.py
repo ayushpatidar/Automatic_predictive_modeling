@@ -70,14 +70,14 @@ def TIME_SERIES_ALGO(df,bool_stat):
 
         train,test = train_test_split(df)
         mean_forecast = train[col].mean()
-        y_prd = np.asarray([mean_forecast]*len(test.shape[0]))
+        y_prd = np.asarray([mean_forecast]*test.shape[0])
 
         rs_mean = sqrt(mean_squared_error(test[col].values,y_prd))
 
         if bool_log:
             train, test = train_test_split(df_log)
             mean_forecast = train[col].mean()
-            y_prd = np.asarray([mean_forecast] * len(test.shape[0]))
+            y_prd = np.asarray([mean_forecast] * test.shape[0])
 
             y_prd = np.exp(y_prd)
 
@@ -88,6 +88,39 @@ def TIME_SERIES_ALGO(df,bool_stat):
 
 
     #3..MOVING AVERAGE
+    try:
+        train,test = train_test_split(df)
+        for i in range(25,90):
+            mean_moving = train[col].rolling(i).mean()
+            y_prd = np.asarray([mean_moving]*test.shape[0])
+            rs_moving = sqrt(mean_squared_error(test[col].valus,y_prd))
+
+            if bool_log:
+                train,test = train_test_split(df_log)
+                mean_moving = train[col].rolling(i).mean()
+                y_prd = np.asarray([mean_moving]*test.shape[0])
+                y_prd = np.exp(y_prd)
+                rs_moving_log = sqrt(mean_squared_error(test[col].values,y_prd))
+
+    except Exception as e:
+        print("error if moving average model, {}".format(e))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
