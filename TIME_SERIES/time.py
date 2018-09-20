@@ -4,6 +4,7 @@ import warnings
 warnings.filterwarnings('ignore')
 import pandas as pd
 from TIME_SERIES.stationary.stationary_test import test_stationary
+from TIME_SERIES.TIME_SERIES_MODELS.MODELS import TIME_SERIES_ALGO
 
 if __name__ == "main":
 
@@ -47,7 +48,9 @@ if __name__ == "main":
 
     bool = test_stationary(df, target)
 
-    if bool == True:
+    TIME_SERIES_ALGO(df,bool)
+
+
 # need to make series stationary
 
 

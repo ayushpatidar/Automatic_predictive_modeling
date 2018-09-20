@@ -40,12 +40,23 @@ def transformation_stationary(df, Y):
         f.close()
 
     except Exception as e:
-        print("error in moving avergae in transformation{}", format(e))
+        print("error in moving avergae in transformation,{}".format(e))
 
 
-    #3..DIFFRENCING THE DATAFRAME
+    #3..FIRST-DIFFRENCING THE DATAFRAME
+    try:
+
+
+
+
+    except Exception as e:
+        print("error in diffrencing in transformation module,{}".format(e))
+
+
+    #4..SEASONAL DIFFRENCING
+
     try:
 
 
     except Exception as e:
-
+        print("error in seasonal diffrencing,{}".format(e))
