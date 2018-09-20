@@ -47,7 +47,7 @@ def TIME_SERIES_ALGO(df,bool_stat):
 
         y_prd = np.asarray([train.ix[train.shape[0] - 1].values[0]] * (test.shape[0]))
 
-        rs_naive = sqrt(mean_squared_error(test[col], y_prd))
+        rs_naive = sqrt(mean_squared_error(test[col].values, y_prd))
         print(rs_naive)
 
         if bool_log:
@@ -58,14 +58,30 @@ def TIME_SERIES_ALGO(df,bool_stat):
 
             y_prd = np.exp(y_prd)
 
-            rs_naive_log = sqrt(mean_squared_error(test[col],y_prd))
+            rs_naive_log = sqrt(mean_squared_error(test[col].values,y_prd))
             print(rs_naive_log)
 
     except Exception as e:
         print("error in modelling in naive approach,{}".format(e))
 
 
-    #2..
+    #2..SIMPLE AVERAGE
+
+        train,test = train_test_split(df)
+        mean_forecast = train[col].mean()
+        y_prd = np.asarray([mean_forecast]*len(test.shape[0]))
+
+        rs_mean = sqrt(mean_squared_error(test[col].values,y_prd))
+
+        if bool_log:
+            train, test = train_test_split(df_log)
+            mean_forecast = train[col].mean()
+            y_prd = np.asarray([mean_forecast] * len(test.shape[0]))
+
+            y_prd = np.exp(y_prd)
+
+            rs_mean = sqrt(mean_squared_error(test[col].values, y_prd))
+
 
 
 
