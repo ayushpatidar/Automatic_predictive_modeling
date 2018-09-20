@@ -1,7 +1,7 @@
-import pandas as pd
+from math import sqrt
 import numpy as np
 from sklearn.metrics import mean_squared_error
-from math import sqrt
+
 
 def log_transformation(df):
     #MAKE LOG TRASFORMATION
@@ -66,6 +66,7 @@ def TIME_SERIES_ALGO(df,bool_stat):
 
 
     #2..SIMPLE AVERAGE
+    try:
 
         train,test = train_test_split(df)
         mean_forecast = train[col].mean()
@@ -81,6 +82,12 @@ def TIME_SERIES_ALGO(df,bool_stat):
             y_prd = np.exp(y_prd)
 
             rs_mean = sqrt(mean_squared_error(test[col].values, y_prd))
+
+    except Exception as e:
+        print("error in moving average,{}".format(e))
+
+
+    #3..MOVING AVERAGE
 
 
 
