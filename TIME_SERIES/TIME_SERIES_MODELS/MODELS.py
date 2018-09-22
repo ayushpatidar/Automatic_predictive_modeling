@@ -110,12 +110,13 @@ def TIME_SERIES_ALGO(df,bool_stat):
 
 
     #3..MOVING AVERAGE
-    """
-    IN PROGRESS HAVE TO MODIFY IT...
+
+    #IN PROGRESS HAVE TO MODIFY IT...
     try:
         train,test = train_test_split(df)
         for i in range(25,90):
-            mean_moving = train[col].rolling(i).mean()
+            #As rolling mean returns mean fo ecah row we want mean f only last row because it is onlu used to forecast
+            mean_moving = train[col].rolling(i).mean().ix[train.shape[0]-1]
             print(mean_moving)
             y_prd = np.asarray([mean_moving] * test.shape[0])
             rs_moving = sqrt(mean_squared_error(test[col].values,y_prd))
@@ -126,7 +127,9 @@ def TIME_SERIES_ALGO(df,bool_stat):
         if bool_log:
             for i in range(25,90):
                 train,test = train_test_split(df_log)
-                mean_moving = train[col].rolling(i).mean()
+
+                #print(type(train[col].rolling(i).mean()))
+                mean_moving = train[col].rolling(i).mean().ix[train.shape[0]-1]
 
                 y_prd = np.array([mean_moving]*test.shape[0])
                 print(y_prd)
@@ -136,14 +139,13 @@ def TIME_SERIES_ALGO(df,bool_stat):
 
     except Exception as e:
         print("error in log moving average model, {}".format(e))
-    """
+
 
     #4.. SIMPLE EXPONENTIAL SMOOTHING
     try:
         train,test = train_test_split(df)
         fit2 = SimpleExpSmoothing(df[col]).fit(smoothing_level = 0.6,optimized = False)
         y_prd = fit2.forecast(len(test))
-
         rs_simple = sqrt(mean_squared_error(test.values,y_prd))
         dict_rmse["simple"] = rs_simple
     except Exception as e:
