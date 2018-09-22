@@ -6,6 +6,12 @@ from sklearn.metrics import mean_squared_error
 def log_transformation(df):
     #MAKE LOG TRASFORMATION
     is_log_transform = False
+    """
+    the lis will keep track of the indexes which are negative 
+    and we have added an constant to make it positive
+    
+    """
+    lis = list()
 
     try:
         lis = df[Y]
@@ -13,6 +19,7 @@ def log_transformation(df):
         if min1 <= 0:
             for i in df.index:
                 if df[i][Y] < 0:
+                    lis.append(i)
                     df[i][Y] = df[i][Y] + abs(min1)
 
         df_log = log(df)
@@ -21,6 +28,7 @@ def log_transformation(df):
         print("error in making log transform {}", e)
 
     return  (is_log_transform,df_log)
+
 
 
 
@@ -104,6 +112,15 @@ def TIME_SERIES_ALGO(df,bool_stat):
 
     except Exception as e:
         print("error if moving average model, {}".format(e))
+
+
+    #4.. SIMPLE EXPONENTIAL SMOOTHING
+    try:
+        
+
+
+    except Exception as e:
+        print("simple exponential smoothing,{}".format(e))
 
 
 
