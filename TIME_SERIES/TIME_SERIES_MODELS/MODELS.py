@@ -6,6 +6,12 @@ from sklearn.metrics import mean_squared_error
 def log_transformation(df):
     #MAKE LOG TRASFORMATION
     is_log_transform = False
+    """
+    the lis will keep track of the indexes which are negative 
+    and we have added an constant to make it positive
+    
+    """
+    lis = list()
 
     try:
         lis = df[Y]
@@ -13,6 +19,7 @@ def log_transformation(df):
         if min1 <= 0:
             for i in df.index:
                 if df[i][Y] < 0:
+                    lis.append(i)
                     df[i][Y] = df[i][Y] + abs(min1)
 
         df_log = log(df)
@@ -21,6 +28,7 @@ def log_transformation(df):
         print("error in making log transform {}", e)
 
     return  (is_log_transform,df_log)
+
 
 
 
@@ -70,14 +78,14 @@ def TIME_SERIES_ALGO(df,bool_stat):
 
         train,test = train_test_split(df)
         mean_forecast = train[col].mean()
-        y_prd = np.asarray([mean_forecast]*len(test.shape[0]))
+        y_prd = np.asarray([mean_forecast]*test.shape[0])
 
         rs_mean = sqrt(mean_squared_error(test[col].values,y_prd))
 
         if bool_log:
             train, test = train_test_split(df_log)
             mean_forecast = train[col].mean()
-            y_prd = np.asarray([mean_forecast] * len(test.shape[0]))
+            y_prd = np.asarray([mean_forecast] * test.shape[0])
 
             y_prd = np.exp(y_prd)
 
@@ -88,6 +96,31 @@ def TIME_SERIES_ALGO(df,bool_stat):
 
 
     #3..MOVING AVERAGE
+    try:
+        train,test = train_test_split(df)
+        for i in range(25,90):
+            mean_moving = train[col].rolling(i).mean()
+            y_prd = np.asarray([mean_moving]*test.shape[0])
+            rs_moving = sqrt(mean_squared_error(test[col].valus,y_prd))
+
+            if bool_log:
+                train,test = train_test_split(df_log)
+                mean_moving = train[col].rolling(i).mean()
+                y_prd = np.asarray([mean_moving]*test.shape[0])
+                y_prd = np.exp(y_prd)
+                rs_moving_log = sqrt(mean_squared_error(test[col].values,y_prd))
+
+    except Exception as e:
+        print("error if moving average model, {}".format(e))
+
+
+    #4.. SIMPLE EXPONENTIAL SMOOTHING
+    try:
+        
+
+
+    except Exception as e:
+        print("simple exponential smoothing,{}".format(e))
 
 
 
@@ -103,7 +136,24 @@ def TIME_SERIES_ALGO(df,bool_stat):
 
 
 
-        train,test = train_test_split(df_log)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
