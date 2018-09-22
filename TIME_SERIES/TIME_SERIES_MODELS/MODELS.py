@@ -1,9 +1,16 @@
+import warnings
 from math import sqrt
+
 import numpy as np
 from sklearn.metrics import mean_squared_error
+from statsmodels.tsa.api import SimpleExpSmoothing
 
+warnings.filterwarnings("ignore")
 
 def log_transformation(df):
+    Y = df.columns.values
+    print(df[Y].dtypes)
+    print(df.dtypes)
     #MAKE LOG TRASFORMATION
     is_log_transform = False
     """
@@ -14,15 +21,16 @@ def log_transformation(df):
     lis = list()
 
     try:
-        lis = df[Y]
+        lis = df[Y].values
         min1 = min(lis)
+
         if min1 <= 0:
             for i in df.index:
                 if df[i][Y] < 0:
                     lis.append(i)
                     df[i][Y] = df[i][Y] + abs(min1)
 
-        df_log = log(df)
+        df_log = np.log(df[Y])
         is_log_transform = True
     except Exception as e:
         print("error in making log transform {}", e)
@@ -45,7 +53,10 @@ def train_test_split(df):
 
 def TIME_SERIES_ALGO(df,bool_stat):
 
-    bool_log,df_log = log_transformation()
+    dict_rmse = dict()
+
+
+    bool_log,df_log = log_transformation(df)
     col = df.columns[0]
     #1.. NAIVE APPROACH
     #IN THIS APPROCAH WE ASSIGN RECENT VALUE TO THE TEST DATAFRAME
@@ -57,6 +68,7 @@ def TIME_SERIES_ALGO(df,bool_stat):
 
         rs_naive = sqrt(mean_squared_error(test[col].values, y_prd))
         print(rs_naive)
+        dict_rmse["naive"] = rs_naive
 
         if bool_log:
             #PERFORM SAME ABOVE THING FOR LOG TRANSFORMED DATA
@@ -68,6 +80,7 @@ def TIME_SERIES_ALGO(df,bool_stat):
 
             rs_naive_log = sqrt(mean_squared_error(test[col].values,y_prd))
             print(rs_naive_log)
+            dict_rmse["naive_log"] = rs_naive_log
 
     except Exception as e:
         print("error in modelling in naive approach,{}".format(e))
@@ -79,8 +92,8 @@ def TIME_SERIES_ALGO(df,bool_stat):
         train,test = train_test_split(df)
         mean_forecast = train[col].mean()
         y_prd = np.asarray([mean_forecast]*test.shape[0])
-
         rs_mean = sqrt(mean_squared_error(test[col].values,y_prd))
+        dict_rmse["simple_avg"] = rs_mean
 
         if bool_log:
             train, test = train_test_split(df_log)
@@ -90,37 +103,69 @@ def TIME_SERIES_ALGO(df,bool_stat):
             y_prd = np.exp(y_prd)
 
             rs_mean = sqrt(mean_squared_error(test[col].values, y_prd))
+            dict_rmse["simple_avg_log"] = rs_mean
 
     except Exception as e:
         print("error in moving average,{}".format(e))
 
 
     #3..MOVING AVERAGE
+    """
+    IN PROGRESS HAVE TO MODIFY IT...
     try:
         train,test = train_test_split(df)
         for i in range(25,90):
             mean_moving = train[col].rolling(i).mean()
-            y_prd = np.asarray([mean_moving]*test.shape[0])
-            rs_moving = sqrt(mean_squared_error(test[col].valus,y_prd))
+            print(mean_moving)
+            y_prd = np.asarray([mean_moving] * test.shape[0])
+            rs_moving = sqrt(mean_squared_error(test[col].values,y_prd))
+    except Exception as e:
+        print("error in moving average,{}".format(e))
+    try:
 
-            if bool_log:
+        if bool_log:
+            for i in range(25,90):
                 train,test = train_test_split(df_log)
                 mean_moving = train[col].rolling(i).mean()
-                y_prd = np.asarray([mean_moving]*test.shape[0])
+
+                y_prd = np.array([mean_moving]*test.shape[0])
+                print(y_prd)
                 y_prd = np.exp(y_prd)
+
                 rs_moving_log = sqrt(mean_squared_error(test[col].values,y_prd))
 
     except Exception as e:
-        print("error if moving average model, {}".format(e))
-
+        print("error in log moving average model, {}".format(e))
+    """
 
     #4.. SIMPLE EXPONENTIAL SMOOTHING
     try:
-        
+        train,test = train_test_split(df)
+        fit2 = SimpleExpSmoothing(df[col]).fit(smoothing_level = 0.6,optimized = False)
+        y_prd = fit2.forecast(len(test))
 
+        rs_simple = sqrt(mean_squared_error(test.values,y_prd))
+        dict_rmse["simple"] = rs_simple
+    except Exception as e:
+        print("error is simple exp without log,{}".format(e))
+
+    try:
+        if bool_log:
+            train, test = train_test_split(df)
+            fit2 = SimpleExpSmoothing(df[col]).fit(smoothing_level=0.6, optimized=False)
+            y_prd = fit2.forecast(len(test))
+            y_prd = np.exp(y_prd)
+            rs_simple = sqrt(mean_squared_error(test.values, y_prd))
+            dict_rmse["simple_log"] = rs_simple
 
     except Exception as e:
-        print("simple exponential smoothing,{}".format(e))
+        print("simple exponential smoothing log,{}".format(e))
+
+
+    #5.. DOUBLE Exponential Smoothi
+
+
+
 
 
 

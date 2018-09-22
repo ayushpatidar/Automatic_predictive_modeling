@@ -3,10 +3,10 @@ import warnings
 
 warnings.filterwarnings('ignore')
 import pandas as pd
-from TIME_SERIES.stationary.stationary_test import test_stationary
-from TIME_SERIES.TIME_SERIES_MODELS.MODELS import TIME_SERIES_ALGO
+from stationary.stationary_test import test_stationary
+from TIME_SERIES_MODELS.MODELS import TIME_SERIES_ALGO
 
-if __name__ == "main":
+if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="tims_series")
 
@@ -14,23 +14,30 @@ if __name__ == "main":
     parser.add_argument("--target", type=str, help="target")
 
     args = parser.parse_args()
-
     if args.dataframe == None:
         print("dataframe not given")
         exit()
-    if arge.target == None:
+    if args.target == None:
         print("target is not given")
         exit()
 
     df = args.dataframe
     target = args.target
 
+
     #filling null values with the forward fiiling method
-    df = df.fillna(method = "ffill")
+    #df = df.fillna(method = "ffill")
 
-
-    df = pd.read_csv(str(dataframe) + ".csv")
+    path = "TIME_SERIES"+"/"
+    df = pd.read_csv(path+str(df) + ".csv")
     col = df.columns
+
+    if target not in col:
+        print("given target variable is not in the dataframe")
+        exit()
+
+
+    print(df.head())
     for i in col:
         try:
             if i != target:
@@ -45,8 +52,12 @@ if __name__ == "main":
 
         except Exception as e:
             print("error while parsing into date error{}", format(e))
+    print("dataframe after parsing")
+    print(df.head())
+
 
     bool = test_stationary(df, target)
+    print(bool)
 
     TIME_SERIES_ALGO(df,bool)
 
