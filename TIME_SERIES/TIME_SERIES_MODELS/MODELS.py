@@ -5,6 +5,7 @@ import numpy as np
 from sklearn.metrics import mean_squared_error
 from statsmodels.tsa.api import SimpleExpSmoothing
 from statsmodels.tsa.api import Holt
+from statsmodels.tsa.api import ExponentialSmoothing
 
 warnings.filterwarnings("ignore")
 
@@ -32,17 +33,17 @@ def log_transformation(df):
                     lis.append(i)
                     df[i][Y] = df[i][Y] + abs(min1)
 
-        df_log = np.log(df[Y])
+        df = np.log(df[Y])
         is_log_transform = True
     except Exception as e:
         print("error in making log transform {}", e)
 
-    return (is_log_transform, df_log)
+    return (is_log_transform, df)
 
 
 def train_test_split(df):
     # FUNCTION FOR RETURNING TRAIN AND TEST HOLDOUT SETS 85 PERCENT  IS USED FOR TRAINING AND 15 PERCENT IS USED FOR TESTING
-    split = int(df.shape[0] * (0.85))
+    split = int(df.shape[0] * (0.65))
     train = df[0:split]
     test = df[split:]
 
@@ -58,7 +59,7 @@ def TIME_SERIES_ALGO(df, bool_stat):
     # IN THIS APPROCAH WE ASSIGN RECENT VALUE TO THE TEST DATAFRAME
 
     try:
-        train, test = train_test_split(df_log)
+        train, test = train_test_split(df)
 
         y_prd = np.asarray([train.ix[train.shape[0] - 1].values[0]] * (test.shape[0]))
 
@@ -150,7 +151,7 @@ def TIME_SERIES_ALGO(df, bool_stat):
 
     try:
         if bool_log:
-            train, test = train_test_split(df)
+            train, test = train_test_split(df_log)
             fit2 = SimpleExpSmoothing(df[col]).fit(smoothing_level=0.6, optimized=False)
             y_prd = fit2.forecast(len(test))
             y_prd = np.exp(y_prd)
@@ -167,8 +168,17 @@ def TIME_SERIES_ALGO(df, bool_stat):
         y_prd = fit2.predict(test.index.values[0], test.index.values[test.shape[0] - 1])
         rs_hotl = sqrt(mean_squared_error(test[col].values, y_prd))
 
+
+        if bool_log:
+            train, test = train_test_split(df)
+            fit2 = Holt(train[col], exponential=True, damped=False).fit()
+            y_prd = fit2.predict(test.index.values[0], test.index.values[test.shape[0] - 1])
+            y_prd = np.exp(y_prd)
+            rs_hotl = sqrt(mean_squared_error(test[col].values, y_prd))
+
+
     except Exception as e:
-        print("error in holt linear forecasting in without damped.{}".format(e))
+        print("error in HOLT linear forecasting in without damped.{}".format(e))
 
     try:
 
@@ -176,9 +186,44 @@ def TIME_SERIES_ALGO(df, bool_stat):
         y_prd = fit2.predict(test.index.values[0], test.index.values[test.shape[0] - 1])
         rs_holtld = sqrt(mean_squared_error(test[col].values, y_prd))
 
+        if bool_log:
+            fit2 = Holt(train[col], exponential=True, damped=True).fit()
+            y_prd = fit2.predict(test.index.values[0], test.index.values[test.shape[0] - 1])
+            y_prd = np.exp(y_prd)
+            yrs_holtld = sqrt(mean_squared_error(test[col].values, y_prd))
+
+
     except Exception as e:
-        print("error in holt linear smoothing  damped,{}".format(e))
+        print("error in HOLT linear smoothing  damped,{}".format(e))
 
 
 
     #HOLT WINTERS FORECASTING..
+    try:
+        train, test = train_test_split(df)
+       # print("fmmf")
+        fit2 = ExponentialSmoothing(test[col], trend="mul", seasonal="mul",seasonal_periods=12).fit()
+        print("fjfj")
+        y_prd = fit2.predict(test.index.values[0],test.index.values[test.shape[0]-1])
+        rs_hlw = sqrt(mean_squared_error(test[col].values,y_prd))
+
+
+        if bool_log:
+            train, test = train_test_split(df_log)
+            fit2 = ExponentialSmoothing(test[col], trend="add", seasonal="add",
+                                        seasonal_periods=12).fit()
+            y_prd = fit2.predict(test.index.values[0], test.index.values[test.shape[0] - 1])
+            rs_hlw = sqrt(mean_squared_error(test[col].values, y_prd))
+
+
+    except Exception as e:
+        print("error in HOLT winter forecasting,{}".format(e))
+
+
+
+
+
+
+
+
+
