@@ -3,9 +3,10 @@ from math import sqrt
 
 import numpy as np
 from sklearn.metrics import mean_squared_error
-from statsmodels.tsa.api import SimpleExpSmoothing
-from statsmodels.tsa.api import Holt
 from statsmodels.tsa.api import ExponentialSmoothing
+from statsmodels.tsa.api import Holt
+from statsmodels.tsa.api import SimpleExpSmoothing
+from TIME_SERIES.stationary.stationary_test import test_stationary
 
 warnings.filterwarnings("ignore")
 
@@ -167,6 +168,7 @@ def TIME_SERIES_ALGO(df, bool_stat):
         fit2 = Holt(train[col], exponential=True, damped=False).fit()
         y_prd = fit2.predict(test.index.values[0], test.index.values[test.shape[0] - 1])
         rs_hotl = sqrt(mean_squared_error(test[col].values, y_prd))
+        dict_rmse["rs_hotl"] = rs_hotl
 
 
         if bool_log:
@@ -174,7 +176,8 @@ def TIME_SERIES_ALGO(df, bool_stat):
             fit2 = Holt(train[col], exponential=True, damped=False).fit()
             y_prd = fit2.predict(test.index.values[0], test.index.values[test.shape[0] - 1])
             y_prd = np.exp(y_prd)
-            rs_hotl = sqrt(mean_squared_error(test[col].values, y_prd))
+            rs_hotl_log = sqrt(mean_squared_error(test[col].values, y_prd))
+            dict_rmse["rs_hotl_log"] = rs_hotl_log
 
 
     except Exception as e:
@@ -185,12 +188,14 @@ def TIME_SERIES_ALGO(df, bool_stat):
         fit2 = Holt(train[col], exponential=True, damped=True).fit()
         y_prd = fit2.predict(test.index.values[0], test.index.values[test.shape[0] - 1])
         rs_holtld = sqrt(mean_squared_error(test[col].values, y_prd))
+        dict_rmse["rs_holtld"] = rs_holtld
 
         if bool_log:
             fit2 = Holt(train[col], exponential=True, damped=True).fit()
             y_prd = fit2.predict(test.index.values[0], test.index.values[test.shape[0] - 1])
             y_prd = np.exp(y_prd)
-            yrs_holtld = sqrt(mean_squared_error(test[col].values, y_prd))
+            rs_holtld = sqrt(mean_squared_error(test[col].values, y_prd))
+            dict_rmse["rs_holtld"] = rs_holtld
 
 
     except Exception as e:
@@ -203,9 +208,10 @@ def TIME_SERIES_ALGO(df, bool_stat):
         train, test = train_test_split(df)
        # print("fmmf")
         fit2 = ExponentialSmoothing(test[col], trend="mul", seasonal="mul",seasonal_periods=12).fit()
-        print("fjfj")
         y_prd = fit2.predict(test.index.values[0],test.index.values[test.shape[0]-1])
         rs_hlw = sqrt(mean_squared_error(test[col].values,y_prd))
+        print(rs_hlw)
+        dict_rmse["rs_hlw"] = rs_hlw
 
 
         if bool_log:
@@ -213,11 +219,34 @@ def TIME_SERIES_ALGO(df, bool_stat):
             fit2 = ExponentialSmoothing(test[col], trend="add", seasonal="add",
                                         seasonal_periods=12).fit()
             y_prd = fit2.predict(test.index.values[0], test.index.values[test.shape[0] - 1])
-            rs_hlw = sqrt(mean_squared_error(test[col].values, y_prd))
-
+            y_prd = np.exp(y_prd)
+            rs_hlw_log = sqrt(mean_squared_error(test[col].values, y_prd))
+            print(rs_hlw_log)
+            dict_rmse["rs_hlw_log"] = rs_hlw_log
 
     except Exception as e:
         print("error in HOLT winter forecasting,{}".format(e))
+
+
+    #ARIMA MODEL....
+
+    try:
+        rs = test_stationary(df, col)
+        if rs:
+            #Here we decide the order of diffrencing the Time Series
+            df_diff = df-df.shift()
+            rs = test_stationary(df_diff,col)
+            if rs:
+                df_diff = df_diff - df_diff.shift()
+
+
+
+
+
+
+
+    except Exception as e:
+        print("error in arima model,{}".format(e))
 
 
 

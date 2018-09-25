@@ -17,3 +17,6 @@ def feature_encoding(df):
 
     except Exception as e:
         print("error in feature encoding", e)
+
+
+    return df

@@ -1,9 +1,12 @@
-import warnings
 import os
 import pickle
-from sklearn.tree import DecisionTreeClassifier
-warnings.filterwarnings('ignore')
+import warnings
+
 from sklearn.model_selection import cross_val_score
+from sklearn.tree import DecisionTreeClassifier
+
+
+warnings.filterwarnings('ignore')
 
 
 def Decision_tree(Y):
@@ -33,23 +36,6 @@ def Decision_tree(Y):
 
 
 
-def logistic_regression(Y):
-    path = "pickle/dumps"
-
-    for fs in os.listdir(path):
-        
-        if fs == "__init__.py":
-            continue
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -69,23 +55,4 @@ def class_algo(Y):
 
 
     #2.LOGISTIC REGRESSION
-
-    try:
-        print("in logistic regression")
-
-        logistic_regression(Y)
-
-
-
-    except Exception as e:
-        print("error in logistic regression while calling it",e)
-
-
-    try:
-
-
-    except Exception as e:
-
-
-
 

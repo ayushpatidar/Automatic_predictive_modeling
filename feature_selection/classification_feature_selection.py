@@ -39,6 +39,9 @@ def feature_classification(df, Y):
     except Exception as e:
         print("error in pca section of feature selection", e)
 
+
+
+
     try:  # RECURSIVE FEATURE SELECTION
         print("*****recursive feature selection****")  # rfe selects feature recursively
         # and eleminates features as it's import goes less
@@ -46,7 +49,7 @@ def feature_classification(df, Y):
         selec = RFECV(estimator=s, step=1, cv=3, scoring=None)
         tmp = selec.fit_transform(df, Y)
         f = open("pickle_dumps/rfe_feature_dumps", "wb")
-        pickle._dump(tmp, f)
+        pickle.dump(tmp, f)
         f.close()
         print("******rfe finished***********")
 
@@ -67,11 +70,14 @@ def feature_classification(df, Y):
     except Exception as e:
         print("error", e)
 
+
+
     try:  # UNIVARIATE FEATURE SELECTION
         print("****selctkbest is started for feature selection***")
         for i in space_score_func:
+            print(i)
             tmp = SelectKBest(i, int(0.6 * df.shape[1])).fit_transform(df, Y)
-            f = open("pickle_dumps/feature_selectkbest", "wb")
+            f = open("pickle_dumps/feature_selectkbest"+str(i), "wb")
             pickle.dump(tmp, f)
             f.close()
 
@@ -82,31 +88,40 @@ def feature_classification(df, Y):
     except Exception as e:
         print("error occured in selectkbest", e)
 
-    try:
-        print("********selctfpr for feature selection is started**********")
 
-        for i in space_score_func:
-            tmp = SelectFpr(i, alpha=0.05)
-            f = open("pickle_dumps/selectfpr_feature_selection", "wb")
+    print("********selctfpr for feature selection is started**********")
+
+    for i in space_score_func:
+        try:
+            print(i)
+            tmp = SelectFpr(i, alpha=0.05).fit_transform(df, Y)
+
+            f = open("pickle_dumps/selectfpr_feature_selection"+str(i), "wb")
             pickle.dump(tmp, f)
             f.close()
 
-        print("********selctfpr for feature selection is finished")
+        except Exception as e:
+            print("error in feature selection in selectfpr",e)
+
+    print("********selctfpr for feature selection is finished")
 
 
-    except Exception as e:
-        print("error occured in selectfpr in classification", e)
 
-    try:
-        print("********feature seelction in selectfdr****")
-        for i in space_score_func:
-            tmp=SelectFdr(i,alpha=0.05)
-        f=open("pickle_dumps/selectfdr_fs","wb")
-        pickle.dump(tmp,f)
-        f.close()
-        print("**********selectfdr in feature selection finished**************")
 
-    except Exception as e:
-        print("*************error in selectfdr feature selection***********",e)
+
+    print("********feature selection in selectfdr****")
+    for i in space_score_func:
+        try:
+
+            tmp = SelectFdr(i, alpha=0.05).fit_transform(df, Y)
+            f = open("pickle_dumps/selectfdr_fs"+str(i), "wb")
+            pickle.dump(tmp, f)
+            f.close()
+
+        except Exception as e:
+            print("error in feature selection in selectfdr",e)
+
+    print("**********selectfdr in feature selection finished**************")
+
 
 
