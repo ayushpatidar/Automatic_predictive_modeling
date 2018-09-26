@@ -6,9 +6,37 @@ from sklearn.metrics import mean_squared_error
 from statsmodels.tsa.api import ExponentialSmoothing
 from statsmodels.tsa.api import Holt
 from statsmodels.tsa.api import SimpleExpSmoothing
-from TIME_SERIES.stationary.stationary_test import test_stationary
+from stationary.stationary_test import test_stationary
+from statsmodels.tsa.stattools import acf, pacf
+from statsmodels.tsa.api import ARIMA
+from statsmodels.tsa.statespace.sarimax import SARIMAX
 
 warnings.filterwarnings("ignore")
+
+
+def get_params_p(df):
+    pa = pacf(df)
+    lis = list()
+    for i in range(len(pa)):
+        if pa[i] > 0.5:
+            lis.append(i)
+        if pa[i] > (-0.5) and (pa[i] < 0):
+            lis.append(i)
+
+    return lis
+
+
+def get_params_q(df):
+    ac = acf(df)
+
+    lis = list()
+    for i in range(len(ac)):
+        if ac[i] > 0.5:
+            lis.append(i)
+        if ac[i] > (-0.5) and (ac[i] < 0):
+            lis.append(i)
+
+    return lis
 
 
 def log_transformation(df):
@@ -170,7 +198,6 @@ def TIME_SERIES_ALGO(df, bool_stat):
         rs_hotl = sqrt(mean_squared_error(test[col].values, y_prd))
         dict_rmse["rs_hotl"] = rs_hotl
 
-
         if bool_log:
             train, test = train_test_split(df)
             fit2 = Holt(train[col], exponential=True, damped=False).fit()
@@ -201,18 +228,15 @@ def TIME_SERIES_ALGO(df, bool_stat):
     except Exception as e:
         print("error in HOLT linear smoothing  damped,{}".format(e))
 
-
-
-    #HOLT WINTERS FORECASTING..
+    # HOLT WINTERS FORECASTING..
     try:
         train, test = train_test_split(df)
-       # print("fmmf")
-        fit2 = ExponentialSmoothing(test[col], trend="mul", seasonal="mul",seasonal_periods=12).fit()
-        y_prd = fit2.predict(test.index.values[0],test.index.values[test.shape[0]-1])
-        rs_hlw = sqrt(mean_squared_error(test[col].values,y_prd))
+        # print("fmmf")
+        fit2 = ExponentialSmoothing(test[col], trend="mul", seasonal="mul", seasonal_periods=12).fit()
+        y_prd = fit2.predict(test.index.values[0], test.index.values[test.shape[0] - 1])
+        rs_hlw = sqrt(mean_squared_error(test[col].values, y_prd))
         print(rs_hlw)
         dict_rmse["rs_hlw"] = rs_hlw
-
 
         if bool_log:
             train, test = train_test_split(df_log)
@@ -227,32 +251,44 @@ def TIME_SERIES_ALGO(df, bool_stat):
     except Exception as e:
         print("error in HOLT winter forecasting,{}".format(e))
 
-
-    #ARIMA MODEL....
+    # ARIMA MODEL....
 
     try:
+        d = 0
         rs = test_stationary(df, col)
         if rs:
-            #Here we decide the order of diffrencing the Time Series
-            df_diff = df-df.shift()
-            rs = test_stationary(df_diff,col)
+            print("first")
+            d = d + 1
+            # Here we decide the order of diffrencing the Time Series
+            df_diff = df - df.shift()
+            df_diff.dropna(inplace=True)
+            rs = test_stationary(df_diff, col)
             if rs:
+                print("Second")
+                d = d + 1
                 df_diff = df_diff - df_diff.shift()
 
+        df_diff.dropna(inplace=True)
 
+        train, test = train_test_split(df_diff)
+        # print(test_stationary(test, col))
+
+        ar_list = get_params_p(train)
+        ma_list = get_params_q(train)
+
+        for i in ar_list:
+            for j in ma_list:
+                try:
+                    model = ARIMA(train, order=(i, 0, j)).fit()
+                    y_prd = model.predict(start=test.index.values[0], end=test.index.values[test.shape[0] - 1])
+                    result_arima = sqrt(mean_squared_error(test[col].values, y_prd))
+                    print(result_arima)
+                except Exception as e:
+                    print("error in training arima,{}",format(e))
 
 
 
 
 
     except Exception as e:
-        print("error in arima model,{}".format(e))
-
-
-
-
-
-
-
-
-
+        print("error in arima,{}".format(e))
