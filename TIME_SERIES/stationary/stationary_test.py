@@ -45,9 +45,11 @@ def test_stationary(df,Y):
         if res[1]>=0.05:
             #series is not statioanry
             s = s+1
+            #return  True
         else:
             #series is stationay
             ns = ns+1
+            #return  False
 
     except Exception as e:
         print("error in performing dicky fuller test error{}",format(e))
