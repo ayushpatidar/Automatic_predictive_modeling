@@ -37,6 +37,7 @@ if __name__ == "__main__":
         exit()
 
 
+
     print(df.head())
     for i in col:
         try:
@@ -53,7 +54,7 @@ if __name__ == "__main__":
         except Exception as e:
             print("error while parsing into date error{}", format(e))
     print("dataframe after parsing")
-    print(df.head())
+    #print(df.head())
 
 
     bool = test_stationary(df, target)
