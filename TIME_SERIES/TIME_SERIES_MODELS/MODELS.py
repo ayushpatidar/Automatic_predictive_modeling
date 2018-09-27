@@ -6,9 +6,38 @@ from sklearn.metrics import mean_squared_error
 from statsmodels.tsa.api import ExponentialSmoothing
 from statsmodels.tsa.api import Holt
 from statsmodels.tsa.api import SimpleExpSmoothing
-from TIME_SERIES.stationary.stationary_test import test_stationary
+from stationary.stationary_test import test_stationary
+from statsmodels.tsa.api import ARIMA
+from statsmodels.tsa.stattools import acf
+from statsmodels.tsa.stattools import pacf
+
 
 warnings.filterwarnings("ignore")
+
+
+def get_params_p(df):
+
+    pa = pacf(df)
+    lis = list()
+    for i in range(len(pa)):
+        if pa[i]>0.5:
+            lis.append(i)
+        if pa[i]>-0.5 and pa[i]<0:
+            lis.append(i)
+
+    return  lis
+
+def get_params_q(df):
+    ac = acf(df)
+    lis = list()
+
+    for i in range(len(ac)):
+        if ac[i]>0.5:
+            lis.append(i)
+        if ac[i]>-0.5 and ac[i]<0:
+            lis.append(i)
+
+    return  lis
 
 
 def log_transformation(df):
@@ -233,17 +262,32 @@ def TIME_SERIES_ALGO(df, bool_stat):
     try:
         rs = test_stationary(df, col)
         if rs:
+
             #Here we decide the order of diffrencing the Time Series
             df_diff = df-df.shift()
+            df_diff.dropna(inplace=True)
             rs = test_stationary(df_diff,col)
             if rs:
                 df_diff = df_diff - df_diff.shift()
 
+        df_diff.dropna(inplace=True)
 
+        train, test = train_test_split(df_diff)
 
+        ar_list = get_params_p(train)
+        ma_list = get_params_q(train)
 
+        for i in ma_list:
+            for j in ar_list:
+                try:
+                    model = ARIMA(train,order=(j, 0, i)).fit()
+                    print("hiii")
+                    y_prd = model.predict(start=test.index.values[0], end=test.index.values[test.shape[0]-1])
 
+                    rs = sqrt(mean_squared_error(test[col].values,y_prd))
 
+                except Exception as e:
+                    print("error while training arima,{}".format(e))
 
     except Exception as e:
         print("error in arima model,{}".format(e))
