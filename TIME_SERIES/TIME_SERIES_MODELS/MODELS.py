@@ -291,3 +291,17 @@ def TIME_SERIES_ALGO(df, bool_stat):
 
         print("error in arima model,{}".format(e))
 
+
+    #.. SARIMAX
+    try:
+
+
+    except Exception as e:
+        print("error in seasonal_arima,{}".format(e))
+
+
+
+
+
+
+

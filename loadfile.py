@@ -15,6 +15,7 @@ from classification_algorithms.class_algorithms import  class_algo
 warnings.filterwarnings('ignore')
 
 if __name__ == '__main__':
+
     parser = argparse.ArgumentParser(description="modelling")
     parser.add_argument('--dataframe', type=str, help="reading dataframe")
     parser.add_argument("--target", type=str, help="load target variable")
@@ -35,7 +36,8 @@ if __name__ == '__main__':
         print("*****loading dataset******")
         df = pd.read_csv(args.dataframe + ".csv")
 
-        if target not in df.columns:
+
+        if args.target not in df.columns:
             print("Specified target variable is not in the dataframe")
             exit()
 
@@ -96,10 +98,6 @@ if __name__ == '__main__':
 
         print("calling classification algo")
         class_algo(y)
-
-
-
-
 
 
     except Exception as e:
