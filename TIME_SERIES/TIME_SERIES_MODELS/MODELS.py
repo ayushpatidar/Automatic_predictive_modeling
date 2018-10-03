@@ -10,6 +10,10 @@ from stationary.stationary_test import test_stationary
 from statsmodels.tsa.api import ARIMA
 from statsmodels.tsa.stattools import acf
 from statsmodels.tsa.stattools import pacf
+from statsmodels.tsa.statespace.sarimax import SARIMAX
+import itertools
+from sklearn.model_selection import GridSearchCV
+
 
 warnings.filterwarnings("ignore")
 
@@ -252,7 +256,7 @@ def TIME_SERIES_ALGO(df, bool_stat):
         print("error in HOLT winter forecasting,{}".format(e))
 
     # ARIMA MODEL....
-
+    """
     try:
         rs = test_stationary(df, col)
         if rs:
@@ -267,9 +271,9 @@ def TIME_SERIES_ALGO(df, bool_stat):
         df_diff.dropna(inplace=True)
 
         train, test = train_test_split(df_diff)
-        """The acf and pacf plots are 
+        ""The acf and pacf plots are
         used to calculate the the parametre for AR
-        AND MA MODELS"""
+        AND MA MODELS
 
 
         ar_list = get_params_p(train)
@@ -291,13 +295,46 @@ def TIME_SERIES_ALGO(df, bool_stat):
 
         print("error in arima model,{}".format(e))
 
+    """
+
 
     #.. SARIMAX
     try:
+        train, test = train_test_split(df)
+        p = d = q = range(0,2)
+        non_seas  = list(itertools.product(p,d,q))
+        lis = [1,3,6,12,24,56]
+
+        for i in lis:
+            sea_so = [(x[0],x[1],x[2],i)for x in list(itertools.product(p,d,q))]
+
+            for j in non_seas:
+                for k in sea_so:
+                    try:
+                        model = SARIMAX(train, order=j, seasonal_order=k,enforce_stationarity=
+                                        False, enforce_invertibility=False).fit()
+                        y_prd = model.predict(start=test.index[0],
+                                                     end=test.index[test.shape[0]-1])
+
+                        rs = sqrt(mean_squared_error(test.values,y_prd))
+                        print(rs)
+                    except Exception as e:
+                        print(e)
+
+
+
+
+
+
+
+
+
 
 
     except Exception as e:
         print("error in seasonal_arima,{}".format(e))
+
+
 
 
 
