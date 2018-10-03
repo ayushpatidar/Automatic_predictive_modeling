@@ -256,7 +256,7 @@ def TIME_SERIES_ALGO(df, bool_stat):
         print("error in HOLT winter forecasting,{}".format(e))
 
     # ARIMA MODEL....
-    """
+
     try:
         rs = test_stationary(df, col)
         if rs:
@@ -271,9 +271,11 @@ def TIME_SERIES_ALGO(df, bool_stat):
         df_diff.dropna(inplace=True)
 
         train, test = train_test_split(df_diff)
-        ""The acf and pacf plots are
+        """
+        The acf and pacf plots are
         used to calculate the the parametre for AR
         AND MA MODELS
+        """
 
 
         ar_list = get_params_p(train)
@@ -295,7 +297,7 @@ def TIME_SERIES_ALGO(df, bool_stat):
 
         print("error in arima model,{}".format(e))
 
-    """
+
 
 
     #.. SARIMAX
@@ -319,7 +321,7 @@ def TIME_SERIES_ALGO(df, bool_stat):
                         rs = sqrt(mean_squared_error(test.values,y_prd))
                         print(rs)
                     except Exception as e:
-                        print(e)
+                        print("error while training the SARIMAX MODELS,{}".format(e))
 
 
 
