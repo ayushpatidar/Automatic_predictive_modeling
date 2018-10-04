@@ -12,7 +12,7 @@ from statsmodels.tsa.stattools import acf
 from statsmodels.tsa.stattools import pacf
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 import itertools
-from sklearn.model_selection import GridSearchCV
+from pyramid.arima import auto_arima
 
 
 warnings.filterwarnings("ignore")
@@ -45,8 +45,8 @@ def get_params_q(df):
 
 def log_transformation(df):
     Y = df.columns.values
-    print(df[Y].dtypes)
-    print(df.dtypes)
+    print((df[Y].dtypes))
+    print((df.dtypes))
     # MAKE LOG TRASFORMATION
     is_log_transform = False
     """
@@ -69,7 +69,7 @@ def log_transformation(df):
         df = np.log(df[Y])
         is_log_transform = True
     except Exception as e:
-        print("error in making log transform {}", e)
+        print(("error in making log transform {}", e))
 
     return (is_log_transform, df)
 
@@ -113,7 +113,7 @@ def TIME_SERIES_ALGO(df, bool_stat):
             dict_rmse["naive_log"] = rs_naive_log
 
     except Exception as e:
-        print("error in modelling in naive approach,{}".format(e))
+        print(("error in modelling in naive approach,{}".format(e)))
 
     # 2..SIMPLE AVERAGE
     try:
@@ -135,7 +135,7 @@ def TIME_SERIES_ALGO(df, bool_stat):
             dict_rmse["simple_avg_log"] = rs_mean
 
     except Exception as e:
-        print("error in moving average,{}".format(e))
+        print(("error in moving average,{}".format(e)))
 
     # 3..MOVING AVERAGE
 
@@ -149,7 +149,7 @@ def TIME_SERIES_ALGO(df, bool_stat):
             y_prd = np.asarray([mean_moving] * test.shape[0])
             rs_moving = sqrt(mean_squared_error(test[col].values, y_prd))
     except Exception as e:
-        print("error in moving average,{}".format(e))
+        print(("error in moving average,{}".format(e)))
     try:
 
         if bool_log:
@@ -166,7 +166,7 @@ def TIME_SERIES_ALGO(df, bool_stat):
                 rs_moving_log = sqrt(mean_squared_error(test[col].values, y_prd))
 
     except Exception as e:
-        print("error in log moving average model, {}".format(e))
+        print(("error in log moving average model, {}".format(e)))
 
     # 4.. SIMPLE EXPONENTIAL SMOOTHING
     try:
@@ -180,7 +180,7 @@ def TIME_SERIES_ALGO(df, bool_stat):
         rs_simple = sqrt(mean_squared_error(test.values, y_prd))
         dict_rmse["simple"] = rs_simple
     except Exception as e:
-        print("error is simple exp without log,{}".format(e))
+        print(("error is simple exp without log,{}".format(e)))
 
     try:
         if bool_log:
@@ -192,7 +192,7 @@ def TIME_SERIES_ALGO(df, bool_stat):
             dict_rmse["simple_log"] = rs_simple
 
     except Exception as e:
-        print("simple exponential smoothing log,{}".format(e))
+        print(("simple exponential smoothing log,{}".format(e)))
 
     # HOT LINEAR METHOD FOR FORECASTING
     try:
@@ -212,7 +212,7 @@ def TIME_SERIES_ALGO(df, bool_stat):
 
 
     except Exception as e:
-        print("error in HOLT linear forecasting in without damped.{}".format(e))
+        print(("error in HOLT linear forecasting in without damped.{}".format(e)))
 
     try:
 
@@ -230,7 +230,7 @@ def TIME_SERIES_ALGO(df, bool_stat):
 
 
     except Exception as e:
-        print("error in HOLT linear smoothing  damped,{}".format(e))
+        print(("error in HOLT linear smoothing  damped,{}".format(e)))
 
     # HOLT WINTERS FORECASTING..
     try:
@@ -253,9 +253,10 @@ def TIME_SERIES_ALGO(df, bool_stat):
             dict_rmse["rs_hlw_log"] = rs_hlw_log
 
     except Exception as e:
-        print("error in HOLT winter forecasting,{}".format(e))
+        print(("error in HOLT winter forecasting,{}".format(e)))
 
     # ARIMA MODEL....
+
 
     try:
         rs = test_stationary(df, col)
@@ -271,11 +272,11 @@ def TIME_SERIES_ALGO(df, bool_stat):
         df_diff.dropna(inplace=True)
 
         train, test = train_test_split(df_diff)
-        """
+       
         The acf and pacf plots are
         used to calculate the the parametre for AR
         AND MA MODELS
-        """
+        
 
 
         ar_list = get_params_p(train)
@@ -291,19 +292,19 @@ def TIME_SERIES_ALGO(df, bool_stat):
 
                 except Exception as e:
 
-                    print("error while training arima,{}".format(e))
+                    print(("error while training arima,{}".format(e)))
 
     except Exception as e:
 
-        print("error in arima model,{}".format(e))
+        print(("error in arima model,{}".format(e)))
 
 
-
+ 
 
     #.. SARIMAX
     try:
         train, test = train_test_split(df)
-        p = d = q = range(0,2)
+        p = d = q = list(range(0,2))
         non_seas  = list(itertools.product(p,d,q))
         lis = [1,3,6,12,24,56]
 
@@ -321,20 +322,23 @@ def TIME_SERIES_ALGO(df, bool_stat):
                         rs = sqrt(mean_squared_error(test.values,y_prd))
                         print(rs)
                     except Exception as e:
-                        print("error while training the SARIMAX MODELS,{}".format(e))
-
-
-
-
-
-
-
-
-
+                        print(("error while training the SARIMAX MODELS,{}".format(e)))
 
 
     except Exception as e:
-        print("error in seasonal_arima,{}".format(e))
+        print(("error in seasonal_arima,{}".format(e)))
+
+
+    try:
+        model = auto_arima(df, start_p=1, start_q=1, start_P=1, start_Q=1, max_p=5
+                           ,max_q=5, max_P=5, max_Q=1, d=1, D=1, seasonal=True)
+        model = model.fit(train)
+        y_prd = model.predict(n_periods=len(test))
+        rs = sqrt(mean_squared_error(test.values,y_prd))
+        print("results in auto_Arima",rs)
+
+    except Exception as e:
+        print("error in auto_Arima,{}".format(e))
 
 
 
