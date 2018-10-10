@@ -23,15 +23,18 @@ class algorithms():
     def logistic(self):
         """This function is for Logistic
             Rgeression """
-        model = LogisticRegression(penalty="l1", dual=False, solver="auto")
-        results = cross_val_score(model, self.data_frame, self.target)
-        results = list(results)
+        score = None
+        try:
+            model = LogisticRegression(penalty="l1", dual=False, solver="auto")
+            results = cross_val_score(model, self.data_frame, self.target)
+            results = list(results)
 
-        score = np.mean(results)
+            score = np.mean(results)
+
+        except Exception as e:
+            print("error in logistic regression,{}".format(e))
+
         return  score
-
-
-    def Decision_tree(self):
 
 
 
