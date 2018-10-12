@@ -62,7 +62,7 @@ class algorithms():
             print("error in decision_tree classsifying,{}".format(e))
 
 
-        return  (score, results)
+        return  (score, model)
 
 
     def Random_forest(self):
@@ -76,7 +76,8 @@ class algorithms():
             model = RandomForestClassifier(n_estimators=50,
                                            criterion="entropy",
                                         min_samples_split=self.data_frame.shape[0]*0.1,
-                                           bootstrap=True, oob_score=False)
+                                           bootstrap=True, oob_score=False,
+                                           max_features="sqrt")
 
             results = list(cross_val_score(model, self.data_frame, self.target, cv=5))
             score = np.mean(results)
@@ -86,4 +87,10 @@ class algorithms():
             print("error in random forest while classifying,{}".format(e))
 
         return (score, model)
+
+
+    def Naive_bayes(self):
+        """This function implements
+        naive bayes algorithm"""
+
 
