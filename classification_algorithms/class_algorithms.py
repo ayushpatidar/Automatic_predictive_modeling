@@ -101,7 +101,7 @@ class algorithms():
             mddel = KNeighborsClassifier(n_neighbors=5, weights="uniform", algorithm="auto",
                                  metric="minkowski", n_jobs=-1)
 
-            results = list(cross_val_score(model, self.data_frame, self.target))
+            results = list(cross_val_score(model, self.data_frame, self.target, cv=5))
 
             score = np.mean(results)
 
@@ -112,7 +112,7 @@ class algorithms():
         return (score, model)
 
 
-    def
+
 
 
 
