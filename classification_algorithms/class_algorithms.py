@@ -7,6 +7,8 @@ from sklearn.tree import  DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import cross_val_score
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import SGDClassifier
+
 
 warnings.filterwarnings('ignore')
 
@@ -52,7 +54,7 @@ class algorithms():
 
         try:
             model = DecisionTreeClassifier(criterion="entropy", splitter="best",
-                                           min_samples_split=df.shape[0]*0.1,
+                                           min_samples_split=self.data_frame.shape[0]*0.1,
                                            max_features=None,)
             results = cross_val_score(model, self.data_frame, self.target, cv=5)
             results = list(results)
@@ -91,14 +93,14 @@ class algorithms():
         return (score, model)
 
 
-    def knn(self):
+    def Knn(self):
         """This function implements knn algorithm"""
 
         score = None
         model = None
 
         try:
-            mddel = KNeighborsClassifier(n_neighbors=5, weights="uniform", algorithm="auto",
+            model = KNeighborsClassifier(n_neighbors=5, weights="uniform", algorithm="auto",
                                  metric="minkowski", n_jobs=-1)
 
             results = list(cross_val_score(model, self.data_frame, self.target, cv=5))
@@ -110,6 +112,30 @@ class algorithms():
             print("error while training in K-nearest neighbours,{}".format(e))
 
         return (score, model)
+
+    def SGDclassifier(self):
+
+        model = None
+        score = None
+
+        try:
+
+            model = SGDClassifier(loss="log", penalty="l1", max_iter=2,
+                                  learning_rate="oprimal")
+
+            results = list(cross_val_score(model, self.data_frame, self.target, cv=3))
+            score = np.mean(results)
+
+        except Exception as e:
+            print("error in training sgd classifier,{}".format(e))
+
+        return  (score, model)
+
+
+
+
+
+
 
 
 
