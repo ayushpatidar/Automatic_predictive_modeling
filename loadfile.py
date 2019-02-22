@@ -10,7 +10,7 @@ from outliears_values.outliears_values_treatment import outliears_treatment
 from spaces.feature_selection_spaces import features_spaces
 from feature_selection.classification_feature_selection import feature_classification
 from feature_encoding.feature_encoding_file import feature_encoding
-from classification_algorithms.class_algorithms import  class_algo
+from classification_algorithms.class_algorithms import algorithms
 
 warnings.filterwarnings('ignore')
 
@@ -97,7 +97,16 @@ if __name__ == '__main__':
 
 
         print("calling classification algo")
-        class_algo(y)
+        obj = algorithms()
+
+
+
+
+        #attrs  = getattr( obj, dir(obj))
+        #print("attrs are", attrs)
+
+
+
 
 
     except Exception as e:
