@@ -11,6 +11,10 @@ from spaces.feature_selection_spaces import features_spaces
 from feature_selection.classification_feature_selection import feature_classification
 from feature_encoding.feature_encoding_file import feature_encoding
 from classification_algorithms.class_algorithms import algorithms
+import os
+import pickle
+
+import hashlib
 
 warnings.filterwarnings('ignore')
 
@@ -31,8 +35,16 @@ if __name__ == '__main__':
         print("****target variable is not given****")
         exit()
 
-    # reading datafarme
+
+    #unique training id
+    training_id = hashlib.sha1()
+
+
+
+
+    #reading dataframe
     try:
+        print("--------------------------")
         print("*****loading dataset******")
         df = pd.read_csv(args.dataframe + ".csv")
 
@@ -46,6 +58,9 @@ if __name__ == '__main__':
         print(df.head())
         print("*****dataset completely loaded******")
 
+
+        print("-------------------------------")
+        print(" ")
         X = df.drop(args.target, axis=1)
         y = df[args.target]
         print(y)
@@ -59,10 +74,24 @@ if __name__ == '__main__':
         else:
             type = args.type
 
+
+
+
+
+
+        print("---------------------------------")
+        print(" ")
+
         print("*****calling null values funcion******")
         # print("***total null values is whole dataframe",df.isnull().sum())
         df = null_treatment(df)
         print("*****function returned from null values******")
+
+        print("---------------------------------")
+        print(" ")
+
+
+
 
         print("********calling featutre encoding function*********")
 
@@ -70,18 +99,28 @@ if __name__ == '__main__':
 
         print("******function returned from label encoder**********")
 
+        print("---------------------------------")
+        print(" ")
+
+
+
+
+
         print("*****calling outliers function******")
         X, y = outliears_treatment(X, y)
 
         print("******function retured from outliers treatment******")
 
+        print("---------------------------------")
+        print(" ")
+
+
+
+
+
+
         print("******feature selection started******")
 
-        print("****call for feature space is made******")
-
-        dict_spaces = features_spaces(type)
-
-        print("*****funtion retured form feature spaces***")
 
         if (type == "classification"):
             print("***feature selection for classification is chosen*****")
@@ -90,14 +129,39 @@ if __name__ == '__main__':
 
             print("****function returned from feature selection for classifiction****")
 
+            print("---------------------------------")
+            print(" ")
+
+
+
+
 
 
 
         print(type)       #prints type of dataset it is...
 
+        print("---------------------------------")
+        print(" ")
 
         print("calling classification algo")
-        obj = algorithms()
+
+
+        dump_path = "/home/ayushpatidar/PycharmProjects/Automatic_predictive_modeling/pickle_dumps"
+
+        for feature_selector in os.listdir(dump_path):
+
+            f = open(dump_path + "/" +str(feature_selector), "rb")
+            feature_selector_current = pickle.load(f)
+            print("feature_selector is", feature_selector)
+
+
+            obj = algorithms()
+
+            X  = feature_selector_current
+            obj.set(X, y)
+            obj.Logistic()
+
+
 
 
 
