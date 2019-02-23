@@ -20,23 +20,34 @@ import hashlib
 
 warnings.filterwarnings('ignore')
 
-if __name__ == '__main__':
 
-    parser = argparse.ArgumentParser(description="modelling")
-    parser.add_argument('--dataframe', type=str, help="reading dataframe")
-    parser.add_argument("--target", type=str, help="load target variable")
-    parser.add_argument("--type", type=str, help="problem type")
+#USE IT FOR COMMAND LINE EXECUTION
 
-    args = parser.parse_args()
+# if __name__ == '__main__':
+#
+#     parser = argparse.ArgumentParser(description="modelling")
+#     parser.add_argument('--dataframe', type=str, help="reading dataframe")
+#     parser.add_argument("--target", type=str, help="load target variable")
+#     parser.add_argument("--type", type=str, help="problem type")
+#
+#     args = parser.parse_args()
+#
+#     if args.dataframe is None:
+#         print("****dataframe is not given****")
+#         exit()
+#
+#     if args.target is None:
+#         print("****target variable is not given****")
+#         exit()
+#
 
-    if args.dataframe is None:
-        print("****dataframe is not given****")
-        exit()
 
-    if args.target is None:
-        print("****target variable is not given****")
-        exit()
+def main_function(file_path, target_name, type):
 
+    args = dict()
+    args["dataframe"] = file_path
+    args["target"] = target_name
+    args["type"] = type
 
     #unique dataset id
     dataset_id= str(hashlib.sha1())
@@ -48,10 +59,10 @@ if __name__ == '__main__':
     try:
         print("--------------------------")
         print("*****loading dataset******")
-        df = pd.read_csv(args.dataframe + ".csv")
+        df = pd.read_csv(args["dataframe"] + ".csv")
 
 
-        if args.target not in df.columns:
+        if args["target"] not in df.columns:
             print("Specified target variable is not in the dataframe")
             exit()
 
@@ -63,18 +74,18 @@ if __name__ == '__main__':
 
         print("-------------------------------")
         print(" ")
-        X = df.drop(args.target, axis=1)
-        y = df[args.target]
+        X = df.drop(args["target"], axis=1)
+        y = df[args["target"]]
         print(y)
 
-        if args.type is None:
+        if args["type"] is None:
             if len(y.unique()) < 0.25 * len(y):
                 type = "classification"
             else:
                 type = "regression"
 
         else:
-            type = args.type
+            type = args["type"]
 
 
 
@@ -203,14 +214,12 @@ if __name__ == '__main__':
             set_results_db(data)
 
 
-
-
-
-
-
-
+        print("ALL ALGORITHMS ARE COMPLETED")
 
 
 
     except Exception as e:
         print("error", e)
+
+
+
