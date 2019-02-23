@@ -39,7 +39,7 @@ if __name__ == '__main__':
 
 
     #unique dataset id
-    dataset_id= hashlib.sha1()
+    dataset_id= str(hashlib.sha1())
 
 
 
@@ -160,32 +160,53 @@ if __name__ == '__main__':
             #creating object of class algorithms
             obj = algorithms()
 
-            training_id = uuid.uuid4()
+            training_id = str(uuid.uuid4())
+
             X  = feature_selector_current
-            obj.set(X, y, dataset_id, training_id)
+            obj.set(X, y, dataset_id, training_id, str(feature_selector))
             obj.Logistic()
 
+
             commit_results_db()
-            set_results_db()
+            data = (obj.dataset_id, obj.training_id, obj.model_name,
+                           obj.score, obj.feature_selector, obj.traning_error)
+            set_results_db(data)
+
+
+            training_id = str(uuid.uuid4())
+            obj.training_id = training_id
+            obj.Decision_tree()
+            commit_results_db()
+            data = (obj.dataset_id, obj.training_id, obj.model_name,
+                    obj.score, obj.feature_selector, obj.traning_error)
+            set_results_db(data)
 
 
 
-            score, model = obj.Decision_tree()
+            training_id = str(uuid.uuid4())
+            obj.training_id = training_id
+            obj.Random_forest()
             commit_results_db()
 
-            score, model = obj.Random_forest()
+            data = (obj.dataset_id, obj.training_id, obj.model_name,
+                    obj.score, obj.feature_selector, obj.traning_error)
+            set_results_db(data)
+
+
+
+            training_id = str(uuid.uuid4())
+            obj.training_id = training_id
+            obj.SGDclassifier()
             commit_results_db()
-
-            score, model =  obj.SGDclassifier()
-            commit_results_db()
-
-
+            data = (obj.dataset_id, obj.training_id, obj.model_name,
+                    obj.score, obj.feature_selector, obj.traning_error)
+            set_results_db(data)
 
 
 
 
-        #attrs  = getattr( obj, dir(obj))
-        #print("attrs are", attrs)
+
+
 
 
 
