@@ -52,3 +52,66 @@ def connection():
     except Exception as e:
         db.close()
         print("error while creating table,{}".format(e))
+
+
+
+
+
+def commit_results_db(model_name, score, feature_selector):
+
+    db = MySQLdb.connect("localhost", "root", "ayushpatidar@04", "AUTO_ML")
+    print("DB CONNETCED")
+
+    cur = db.cursor()
+
+    try:
+        f = 0
+        sql = "SHOW TABLES LIKE 'RESULTS'"
+        cur.execute(sql)
+        rs = cur.fetchone()
+        print("rs is ", rs)
+
+
+        if rs:
+            print("table is already there")
+
+        else:
+            print("create a table with name RESULTS")
+
+            sql = """CREATE TABLE RESULTS(DATASET_ID FLOAT NOT NULL, TRAINING_ID FLOAT NOT NULL, MODEL_NAME VARCHAR(50) NULL,
+            ACCURACY FLOAT NULL, FEATURE_SELECTOR VARCHAR(50) NULL, PRIMARY KEY(TRAINING_ID), ERROR_MODEL_TRAINING VARCHAR(100) NULL)"""
+
+            cur.execute(sql)
+            print("table created")
+
+
+    except Exception as e:
+        print("error while creating table ", e)
+
+
+    db.close()
+
+
+
+def set_results_db():
+
+     db = MySQLdb.connect("localhost", "root", "ayushpatidar@04", "AUTO_ML")
+     print("db connected")
+
+     cur = db.cursor()
+
+     try:
+         print("trying to insert in db")
+         sql = "INSERT INTO RESULTS(DATASET_ID, TRAINING_ID, MODEL_NAME, ACCURACY, FEATURE_SELECTOR, ERROR_MODEL_TRAINING)" \
+               "VALUES(%s, %s, %s, %s, %s, %s)"
+
+         cur.execute(sql)
+         print("results added successfully in database AUTO_ML")
+         db.commit()
+
+
+     except Exception as e:
+         print("error while inserting content in database AUTO_ML", e)
+
+
+     db.close()

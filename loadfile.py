@@ -11,9 +11,11 @@ from spaces.feature_selection_spaces import features_spaces
 from feature_selection.classification_feature_selection import feature_classification
 from feature_encoding.feature_encoding_file import feature_encoding
 from classification_algorithms.class_algorithms import algorithms
+from mysqlclient import commit_results_db
+from mysqlclient import set_results_db
 import os
 import pickle
-
+import uuid
 import hashlib
 
 warnings.filterwarnings('ignore')
@@ -36,8 +38,8 @@ if __name__ == '__main__':
         exit()
 
 
-    #unique training id
-    training_id = hashlib.sha1()
+    #unique dataset id
+    dataset_id= hashlib.sha1()
 
 
 
@@ -155,11 +157,27 @@ if __name__ == '__main__':
             print("feature_selector is", feature_selector)
 
 
+            #creating object of class algorithms
             obj = algorithms()
 
+            training_id = uuid.uuid4()
             X  = feature_selector_current
-            obj.set(X, y)
+            obj.set(X, y, dataset_id, training_id)
             obj.Logistic()
+
+            commit_results_db()
+            set_results_db()
+
+
+
+            score, model = obj.Decision_tree()
+            commit_results_db()
+
+            score, model = obj.Random_forest()
+            commit_results_db()
+
+            score, model =  obj.SGDclassifier()
+            commit_results_db()
 
 
 
