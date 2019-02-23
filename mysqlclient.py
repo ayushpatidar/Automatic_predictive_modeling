@@ -57,7 +57,7 @@ def connection():
 
 
 
-def commit_results_db(model_name, score, feature_selector):
+def commit_results_db():
 
     db = MySQLdb.connect("localhost", "root", "ayushpatidar@04", "AUTO_ML")
     print("DB CONNETCED")
@@ -78,10 +78,11 @@ def commit_results_db(model_name, score, feature_selector):
         else:
             print("create a table with name RESULTS")
 
-            sql = """CREATE TABLE RESULTS(DATASET_ID FLOAT NOT NULL, TRAINING_ID FLOAT NOT NULL, MODEL_NAME VARCHAR(50) NULL,
-            ACCURACY FLOAT NULL, FEATURE_SELECTOR VARCHAR(50) NULL, PRIMARY KEY(TRAINING_ID), ERROR_MODEL_TRAINING VARCHAR(100) NULL)"""
+            sql = """CREATE TABLE RESULTS(DATASET_ID VARCHAR(100) NOT NULL, TRAINING_ID VARCHAR(100) NOT NULL, MODEL_NAME VARCHAR(100) NULL,
+            ACCURACY FLOAT NULL, FEATURE_SELECTOR VARCHAR(100) NULL, PRIMARY KEY(TRAINING_ID), ERROR_MODEL_TRAINING VARCHAR(100) NULL)"""
 
             cur.execute(sql)
+            db.commit()
             print("table created")
 
 
@@ -93,7 +94,7 @@ def commit_results_db(model_name, score, feature_selector):
 
 
 
-def set_results_db():
+def set_results_db(data):
 
      db = MySQLdb.connect("localhost", "root", "ayushpatidar@04", "AUTO_ML")
      print("db connected")
@@ -105,7 +106,7 @@ def set_results_db():
          sql = "INSERT INTO RESULTS(DATASET_ID, TRAINING_ID, MODEL_NAME, ACCURACY, FEATURE_SELECTOR, ERROR_MODEL_TRAINING)" \
                "VALUES(%s, %s, %s, %s, %s, %s)"
 
-         cur.execute(sql)
+         cur.execute(sql, data)
          print("results added successfully in database AUTO_ML")
          db.commit()
 
