@@ -2,9 +2,46 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="673a555d-9e6a-48b1-a007-4bbc27421a9f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Automatic_predictive_modeling.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Automatic_predictive_modeling.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TIME_SERIES/TIME_SERIES_MODELS/MODELS.py" beforeDir="false" afterPath="$PROJECT_DIR$/TIME_SERIES/TIME_SERIES_MODELS/MODELS.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feature_selection/classification_feature_selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/feature_selection/classification_feature_selection.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/loadfile.py" beforeDir="false" afterPath="$PROJECT_DIR$/loadfile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysqlclient.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysqlclient.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/feature_selectkbest&lt;function chi2 at 0x7f53b2d2d8c0&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/feature_selectkbest&lt;function chi2 at 0x7f74a388a8c0&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/feature_selectkbest&lt;function chi2 at 0x7f7a0a41f8c0&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/feature_selectkbest&lt;function chi2 at 0x7f7f8686d8c0&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/feature_selectkbest&lt;function f_classif at 0x7f53b2d2d7d0&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/feature_selectkbest&lt;function f_classif at 0x7f74a388a7d0&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/feature_selectkbest&lt;function f_classif at 0x7f7a0a41f7d0&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/feature_selectkbest&lt;function f_classif at 0x7f7f8686d7d0&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/feature_selectkbest&lt;function mutual_info_classif at 0x7f53b2d420c8&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/feature_selectkbest&lt;function mutual_info_classif at 0x7f74a389f0c8&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/feature_selectkbest&lt;function mutual_info_classif at 0x7f7a0a4340c8&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/feature_selectkbest&lt;function mutual_info_classif at 0x7f7f868820c8&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/pca_feature_dumps" beforeDir="false" afterPath="$PROJECT_DIR$/pickle_dumps/pca_feature_dumps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/rfe_feature_dumps" beforeDir="false" afterPath="$PROJECT_DIR$/pickle_dumps/rfe_feature_dumps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/selcetfrommodel_feature_selection" beforeDir="false" afterPath="$PROJECT_DIR$/pickle_dumps/selcetfrommodel_feature_selection" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/selectfdr_fs&lt;function chi2 at 0x7f53b2d2d8c0&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/selectfdr_fs&lt;function chi2 at 0x7f74a388a8c0&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/selectfdr_fs&lt;function chi2 at 0x7f7a0a41f8c0&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/selectfdr_fs&lt;function chi2 at 0x7f7f8686d8c0&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/selectfdr_fs&lt;function f_classif at 0x7f53b2d2d7d0&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/selectfdr_fs&lt;function f_classif at 0x7f74a388a7d0&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/selectfdr_fs&lt;function f_classif at 0x7f7a0a41f7d0&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/selectfdr_fs&lt;function f_classif at 0x7f7f8686d7d0&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/selectfpr_feature_selection&lt;function chi2 at 0x7f53b2d2d8c0&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/selectfpr_feature_selection&lt;function chi2 at 0x7f74a388a8c0&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/selectfpr_feature_selection&lt;function chi2 at 0x7f7a0a41f8c0&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/selectfpr_feature_selection&lt;function chi2 at 0x7f7f8686d8c0&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/selectfpr_feature_selection&lt;function f_classif at 0x7f53b2d2d7d0&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/selectfpr_feature_selection&lt;function f_classif at 0x7f74a388a7d0&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/selectfpr_feature_selection&lt;function f_classif at 0x7f7a0a41f7d0&gt;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickle_dumps/selectfpr_feature_selection&lt;function f_classif at 0x7f7f8686d7d0&gt;" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,65 +49,25 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-291926287">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="19" />
-          <entry key="project.open.time.0" value="3" />
-          <entry key="project.open.time.1" value="6" />
-          <entry key="project.open.time.11" value="2" />
-          <entry key="project.open.time.13" value="3" />
-          <entry key="project.open.time.15" value="1" />
-          <entry key="project.open.time.16" value="1" />
-          <entry key="project.open.time.18" value="1" />
-          <entry key="project.open.time.2" value="3" />
-          <entry key="project.open.time.4" value="1" />
-          <entry key="project.open.time.5" value="2" />
-          <entry key="project.open.time.7" value="2" />
-          <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="26" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="activate" value="1" />
-          <entry key="csv" value="4" />
-          <entry key="py" value="45" />
-          <entry key="xml" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="PLAIN_TEXT" value="5" />
-          <entry key="Python" value="45" />
-          <entry key="XML" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="py" value="21313" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="Python" value="21313" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.vcs.git.usages">
-        <counts>
-          <entry key="git.branch.checkout.local" value="1" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TIME_SERIES/time.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/feature_selection/classification_feature_selection.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+            <state relative-caret-position="399">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/loadfile.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="223" column="17" lean-forward="true" selection-start-line="223" selection-start-column="17" selection-end-line="223" selection-end-column="17" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -78,13 +75,34 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/TIME_SERIES/TIME_SERIES_MODELS/MODELS.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1165">
-              <caret line="294" column="15" selection-start-line="294" selection-start-column="15" selection-end-line="294" selection-end-column="15" />
+            <state relative-caret-position="249">
+              <caret line="22" column="58" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mysqlclient.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="230">
+              <caret line="149" lean-forward="true" selection-start-line="149" selection-end-line="149" />
               <folding>
-                <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#37#51#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classification_algorithms/class_algorithms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1290">
+              <caret line="102" column="95" selection-start-line="102" selection-start-column="95" selection-end-line="102" selection-end-column="95" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -95,6 +113,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
         <option value="Python Script" />
       </list>
     </option>
@@ -103,10 +122,13 @@
     <findStrings>
       <find>feature_encoding</find>
       <find>print</find>
+      <find>sys</find>
+      <find>dict_spaces</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/pickle_dumps</dir>
       <dir>$PROJECT_DIR$/null_values</dir>
+      <dir>$PROJECT_DIR$</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -120,10 +142,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/outliears_values/outliears_values_treatment.py" />
         <option value="$PROJECT_DIR$/spaces/feature_selection_spaces.py" />
         <option value="$PROJECT_DIR$/feature_encoding/feature_encoding_file.py" />
-        <option value="$PROJECT_DIR$/feature_selection/classification_feature_selection.py" />
         <option value="$PROJECT_DIR$/TIME-SERIES/sationary/sationary_test.py" />
         <option value="$PROJECT_DIR$/TIME-SERIES/stationary/stationary_test.py" />
         <option value="$PROJECT_DIR$/TIME-SERIES/time.py" />
@@ -134,22 +154,32 @@
         <option value="$PROJECT_DIR$/testin.py" />
         <option value="$PROJECT_DIR$/TIME_SERIES/time.py" />
         <option value="$PROJECT_DIR$/TIME_SERIES/stationary/stationary_test.py" />
-        <option value="$PROJECT_DIR$/classification_algorithms/class_algorithms.py" />
-        <option value="$PROJECT_DIR$/loadfile.py" />
         <option value="$PROJECT_DIR$/TIME_SERIES/TIME_SERIES_MODELS/tmp_models.py" />
         <option value="$PROJECT_DIR$/TIME_SERIES/TIME_SERIES_MODELS/MODELS.py" />
+        <option value="$PROJECT_DIR$/Backend/templates/about.html" />
+        <option value="$PROJECT_DIR$/Backend/static/css/template.css" />
+        <option value="$PROJECT_DIR$/outliears_values/outliears_values_treatment.py" />
+        <option value="$PROJECT_DIR$/classification_algorithms/class_algorithms.py" />
+        <option value="$PROJECT_DIR$/Backend/__init__.py" />
+        <option value="$PROJECT_DIR$/__init__.py" />
+        <option value="$PROJECT_DIR$/Backend/templates/login.html" />
+        <option value="$PROJECT_DIR$/feature_selection/classification_feature_selection.py" />
+        <option value="$PROJECT_DIR$/Backend/main.py" />
+        <option value="$PROJECT_DIR$/mysqlclient.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/loadfile.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="87" />
-    <option name="y" value="-4" />
+    <option name="y" value="44" />
     <option name="width" value="1279" />
-    <option name="height" value="752" />
+    <option name="height" value="724" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
@@ -163,12 +193,7 @@
             <path>
               <item name="Automatic_predictive_modeling" type="b2602c69:ProjectViewProjectNode" />
               <item name="Automatic_predictive_modeling" type="462c0819:PsiDirectoryNode" />
-              <item name="outliears_values" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Automatic_predictive_modeling" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Automatic_predictive_modeling" type="462c0819:PsiDirectoryNode" />
-              <item name="TIME_SERIES" type="462c0819:PsiDirectoryNode" />
+              <item name="classification_algorithms" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -202,14 +227,21 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="ToolWindowTerminal.ShowToolbar" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MateMLOpt" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../new_mate_ml" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/TIME_SERIES" />
+      <recent name="$PROJECT_DIR$/Backend/static/css" />
+      <recent name="$PROJECT_DIR$/Backend/static" />
+      <recent name="$PROJECT_DIR$/Backend" />
+      <recent name="$PROJECT_DIR$/Backend/templates" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Backend/templates/images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -325,78 +357,73 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20109546" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28090766" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="DB Browser" order="3" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3279483" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32741934" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.35218093" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3990307" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3279483" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32741934" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" weight="0.32956383" />
       <window_info anchor="bottom" id="DB Execution Console" order="8" />
-      <window_info active="true" anchor="bottom" x="76" y="273" width="1278" height="218" id="Terminal" internal_type="SLIDING" order="9" sideWeight="0.7190923" visible="true" weight="0.36187398" />
+      <window_info active="true" anchor="bottom" x="76" y="273" width="1278" height="218" id="Terminal" internal_type="SLIDING" order="9" sideWeight="0.7190923" visible="true" weight="0.048387095" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.28090766" side_tool="true" weight="0.28432956" />
-      <window_info anchor="bottom" id="Python Console" order="11" />
+      <window_info anchor="bottom" id="Python Console" order="11" weight="0.32903227" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32956383" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20109546" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28090766" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="DB Browser" order="3" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3279483" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32741934" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.35218093" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3990307" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3279483" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32741934" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" weight="0.32956383" />
       <window_info anchor="bottom" id="DB Execution Console" order="8" />
-      <window_info active="true" anchor="bottom" x="76" y="273" width="1278" height="218" id="Terminal" internal_type="SLIDING" order="9" sideWeight="0.7190923" visible="true" weight="0.3117932" />
+      <window_info anchor="bottom" x="76" y="273" width="1278" height="218" id="Terminal" internal_type="SLIDING" order="9" sideWeight="0.7190923" visible="true" weight="0.37741935" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.28090766" side_tool="true" weight="0.28432956" />
-      <window_info anchor="bottom" id="Python Console" order="11" />
+      <window_info anchor="bottom" id="Python Console" order="11" weight="0.32903227" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32956383" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout-to-restore>
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.css" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/TIME_SERIES/stationary_transformation/transformation.py</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/TIME_SERIES/stationary/stationary_test.py</url>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/venv/bin/activate" />
-    <entry file="file://$PROJECT_DIR$/feature_selection/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/TIME-SERIES/stationary/stationary_test.py" />
     <entry file="file://$PROJECT_DIR$/TIME-SERIES/sationary/sationary_test.py" />
     <entry file="file://$PROJECT_DIR$/TIME-SERIES/time.py" />
     <entry file="file://$PROJECT_DIR$/TIME-SERIES/ets.py" />
-    <entry file="file://$PROJECT_DIR$/spaces/feature_selection_spaces.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feature_selection/classification_feature_selection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9">
-          <caret line="45" column="10" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.6/dist-packages/pandas/core/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -411,25 +438,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TIME_SERIES/stationary_transformation/transformation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing.py" />
-    <entry file="file://$PROJECT_DIR$/null_values/null_values_treatment.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testin.py" />
-    <entry file="file://$PROJECT_DIR$/outliears_values/outliears_values_treatment.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1210">
-          <caret line="61" column="15" lean-forward="true" selection-start-line="61" selection-start-column="15" selection-end-line="61" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2508" />
@@ -437,34 +445,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/spaces/__init__.py" />
     <entry file="file://$PROJECT_DIR$/train (3).csv" />
-    <entry file="file://$PROJECT_DIR$/loadfile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="39" column="16" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feature_encoding/feature_encoding_file.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="28" lean-forward="true" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classification_algorithms/class_algorithms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-191">
-          <caret line="5" column="47" selection-start-line="5" selection-start-column="47" selection-end-line="5" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TIME_SERIES/stationary/stationary_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1064">
-          <caret line="56" column="20" lean-forward="true" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TIME_SERIES/TIME_SERIES_MODELS/tmp_models.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -475,22 +455,256 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TIME_SERIES/time.py">
+    <entry file="file://$PROJECT_DIR$/Backend/templates/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/templates/about.html" />
+    <entry file="file://$PROJECT_DIR$/testin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+        <state>
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TIME_SERIES/TIME_SERIES_MODELS/MODELS.py">
+    <entry file="file://$PROJECT_DIR$/testing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1165">
-          <caret line="294" column="15" selection-start-line="294" selection-start-column="15" selection-end-line="294" selection-end-column="15" />
+        <state>
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification_algorithms/jjn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification_algorithms/jjn2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#83#94#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification_algorithms/pandas_missing value.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification_algorithms/tourist.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification_algorithms/tourist1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TIME_SERIES/time.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TIME_SERIES/stationary_transformation/transformation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification_metrics/metrics.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TIME_SERIES/stationary/stationary_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/outliears_values/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/templates/images/logo.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/image.png" />
+    <entry file="file://$PROJECT_DIR$/Backend/img/logo.jpg" />
+    <entry file="file://$PROJECT_DIR$/Backend/images/logo.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/static/css/logo.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/static/css/images/logo.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/static/css/image.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/static/css/template.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1470372074213.jpg" />
+    <entry file="file://$PROJECT_DIR$/loadfile.py.bak" />
+    <entry file="file://$PROJECT_DIR$/spaces/feature_selection_spaces.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/null_values/null_values_treatment.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feature_encoding/feature_encoding_file.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.5/site-packages/MySQLdb/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="86" selection-start-line="86" selection-end-line="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TIME_SERIES/TIME_SERIES_MODELS/MODELS.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="54" column="19" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/outliears_values/outliears_values_treatment.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.5/site-packages/sklearn/linear_model/logistic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1222" column="8" selection-start-line="1222" selection-start-column="8" selection-end-line="1222" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="5" lean-forward="true" selection-start-line="5" selection-start-column="2" selection-end-line="6" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysqlclient.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="149" lean-forward="true" selection-start-line="149" selection-end-line="149" />
+          <folding>
+            <element signature="e#37#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="22" column="58" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loadfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="223" column="17" lean-forward="true" selection-start-line="223" selection-start-column="17" selection-end-line="223" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification_algorithms/class_algorithms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1290">
+          <caret line="102" column="95" selection-start-line="102" selection-start-column="95" selection-end-line="102" selection-end-column="95" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feature_selection/classification_feature_selection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>

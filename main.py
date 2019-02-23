@@ -18,9 +18,9 @@ def result():
         result = request.form
         print(result)
         print("FILE PATH IS", result["FILE_PATH"])
-        main_function(result["FILE_PATH"], result["TARGET_NAME"], result["PROBLEM_TYPE"])
+        df = main_function(result["FILE_PATH"], result["TARGET_NAME"], result["PROBLEM_TYPE"])
 
-        return ("training_started")
+        return df.to_html(header="true", table_id="table")
 
 
 

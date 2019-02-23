@@ -13,6 +13,7 @@ from feature_encoding.feature_encoding_file import feature_encoding
 from classification_algorithms.class_algorithms import algorithms
 from mysqlclient import commit_results_db
 from mysqlclient import set_results_db
+from mysqlclient import fetch_results
 import os
 import pickle
 import uuid
@@ -53,7 +54,7 @@ def main_function(file_path, target_name, type):
     dataset_id= str(hashlib.sha1())
 
 
-
+    df = None
 
     #reading dataframe
     try:
@@ -217,9 +218,15 @@ def main_function(file_path, target_name, type):
         print("ALL ALGORITHMS ARE COMPLETED")
 
 
+        df = fetch_results()
+        df = df.sort_values(by="ACCURACY", ascending=False).head(10)
+
+        print(df)
 
     except Exception as e:
         print("error", e)
 
+
+    return df
 
 

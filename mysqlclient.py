@@ -3,6 +3,7 @@ import MySQLdb
 import os
 import warnings
 import sys
+import pandas as pd
 
 warnings.filterwarnings('ignore')
 
@@ -95,8 +96,7 @@ def commit_results_db():
 
 
 def set_results_db(data):
-     print("here")
-     return "here"
+
      db = MySQLdb.connect("localhost", "root", "ayushpatidar@04", "AUTO_ML")
      print("db connected")
 
@@ -117,3 +117,36 @@ def set_results_db(data):
 
 
      db.close()
+
+
+def fetch_results():
+
+    db = MySQLdb.connect("localhost", "root", "ayushpatidar@04", "AUTO_ML")
+
+    try:
+        cur = db.cursor()
+        sql = "SELECT * FROM RESULTS"
+        cur.execute(sql)
+        #print("RESULTS ARE", cur.fetchall())
+
+        result  = list(cur.fetchall())
+
+        sql = "SHOW COLUMNS FROM RESULTS"
+        cur.execute(sql)
+        col = list(cur.fetchall())
+        cols = list()
+        for i in col:
+            cols.append(i[0])
+
+
+
+
+        print("COLUMNS ARE ",cols)
+        df = pd.DataFrame(result, columns=cols)
+
+
+        return df
+
+
+    except Exception as e:
+        print("error while fetching results", e)
