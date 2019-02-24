@@ -144,9 +144,102 @@ def fetch_results():
         print("COLUMNS ARE ",cols)
         df = pd.DataFrame(result, columns=cols)
 
+        db.close()
 
         return df
 
 
     except Exception as e:
         print("error while fetching results", e)
+
+
+
+def user_authentication(username, password):
+    #this function is used to check whether a user is authenticated or not
+    print("in authentication function")
+
+    db = MySQLdb.connect("localhost", "root", "ayushpatidar@04", "USER_LOGIN")
+    print("USER_DETAILS DB CONNECTED")
+
+    try:
+        cur = db.cursor()
+
+        sql = "SELECT USER_ID, PWD FROM DETAILS"
+        cur.execute(sql)
+
+        results = list(cur.fetchall())
+
+        print(results)
+        print(type(results))
+
+        if (username,password) in results:
+            #use exsist
+            return 1
+        else:
+            #user is not registered
+            return 0
+
+    except Exception as e:
+        print("error in user_authentication function", e)
+
+
+
+
+
+def create_user(username, password, f_name, l_name, city):
+
+    data = (username, f_name, l_name, password, city)
+
+    db = MySQLdb.connect("localhost", "root", "ayushpatidar@04", "USER_LOGIN")
+
+    print("db connected")
+
+    try:
+
+        cur = db.cursor()
+        sql = """INSERT INTO DETAILS(USER_ID, F_NAME  ,
+                L_NAME , PWD, CITY)
+                VALUES(%s, %s, %s, %s, %s)"""
+
+        cur.execute(sql, data)
+        db.commit()
+        print("result successfully added")
+
+
+
+    except Exception as e:
+        print("error in create_user DB ", e)
+
+
+    db.close()
+
+
+def create_user_table():
+    print("in create user db table")
+
+    db = MySQLdb.connect("localhost", "root", "ayushpatidar@04", "USER_LOGIN")
+    print("db connected")
+
+    try:
+        cur = db.cursor()
+        sql = "SHOW TABLES LIKE 'DETAILS'"
+        cur.execute(sql)
+
+        rs = cur.fetchone()
+
+        if rs:
+            print("USER TABLE ALREADY THERE")
+        else:
+            print("MAKE NEW USER TABLE")
+
+            sql =  """CREATE TABLE DETAILS(USER_ID VARCHAR(100) NOT NULL, F_NAME VARCHAR(100) NULL ,
+                L_NAME VARCHAR(100) NULL, PWD VARCHAR(100) NOT NULL, CITY VARCHAR(100) NULL,
+                PRIMARY KEY(USER_ID))"""
+            cur.execute(sql)
+            db.commit()
+
+
+    except Exception as e:
+        print("error in create_user_table ", e)
+
+    db.close()
