@@ -48,6 +48,7 @@ def get_params_q(df):
 
 def insert_into_database(model_name, model_acc, model_error):
 
+    print(model_name, model_acc)
     print("in database")
     """THIS FUNCTION IS USED FOR ADDING THE TIME SERIES FOR-
           -ECAST RESULTS INTO THE DATABASE"""
@@ -247,6 +248,8 @@ def TIME_SERIES_ALGO(df, bool_stat):
         insert_into_database("SIMPLE_EXP", None, e)
         print(("simple exponential smoothing log,{}".format(e)))
 
+
+
     # HOT LINEAR METHOD FOR FORECASTING
     try:
         train, test = train_test_split(df)
@@ -289,6 +292,9 @@ def TIME_SERIES_ALGO(df, bool_stat):
     except Exception as e:
         print(("error in HOLT linear smoothing  damped,{}".format(e)))
         insert_into_database("HOLT_LINEAR", None, e)
+
+
+
     # HOLT WINTERS FORECASTING..
     try:
         train, test = train_test_split(df)
@@ -317,44 +323,47 @@ def TIME_SERIES_ALGO(df, bool_stat):
         insert_into_database("HOLT_WINTER", None, e)
     # ARIMA MODEL....
 
-    try:
-        rs = test_stationary(df, col)
-        if rs:
+    # try:
+    #     rs = test_stationary(df, col)
+    #     if rs:
+    #
+    #         # Here we decide the order of diffrencing the Time Series
+    #         df_diff = df - df.shift()
+    #         df_diff.dropna(inplace=True)
+    #         rs = test_stationary(df_diff, col)
+    #         if rs:
+    #             df_diff = df_diff - df_diff.shift()
+    #
+    #     df_diff.dropna(inplace=True)
+    #
+    #     train, test = train_test_split(df_diff)
+    #
+    #     """ The acf and pacf plots are
+    #         used to calculate the the parametre for AR
+    #         AND MA MODELS"""
+    #
+    #     ar_list = get_params_p(train)
+    #     ma_list = get_params_q(train)
+    #
+    #     for i in ma_list:
+    #         for j in ar_list:
+    #             try:
+    #                 model = ARIMA(train, order=(j, 0, i)).fit()
+    #                 y_prd = model.predict(start=test.index.values[0], end=test.index.values[test.shape[0] - 1])
+    #
+    #                 rs = sqrt(mean_squared_error(test[col].values, y_prd))
+    #                 insert_into_database("ARIMA", rs, "{}")
+    #             except Exception as e:
+    #
+    #                 print(("error while training arima,{}".format(e)))
+    #                 insert_into_database("ARIMA", None, e)
+    # except Exception as e:
+    #
+    #     print(("error in arima model,{}".format(e)))
+    #     insert_into_database("ARIMA", None, e)
 
-            # Here we decide the order of diffrencing the Time Series
-            df_diff = df - df.shift()
-            df_diff.dropna(inplace=True)
-            rs = test_stationary(df_diff, col)
-            if rs:
-                df_diff = df_diff - df_diff.shift()
 
-        df_diff.dropna(inplace=True)
 
-        train, test = train_test_split(df_diff)
-
-        """ The acf and pacf plots are
-            used to calculate the the parametre for AR
-            AND MA MODELS"""
-
-        ar_list = get_params_p(train)
-        ma_list = get_params_q(train)
-
-        for i in ma_list:
-            for j in ar_list:
-                try:
-                    model = ARIMA(train, order=(j, 0, i)).fit()
-                    y_prd = model.predict(start=test.index.values[0], end=test.index.values[test.shape[0] - 1])
-
-                    rs = sqrt(mean_squared_error(test[col].values, y_prd))
-                    insert_into_database("ARIMA", rs, "{}")
-                except Exception as e:
-
-                    print(("error while training arima,{}".format(e)))
-                    insert_into_database("ARIMA", None, e)
-    except Exception as e:
-
-        print(("error in arima model,{}".format(e)))
-        insert_into_database("ARIMA", None, e)
 
     # .. SARIMAX
     try:
@@ -371,8 +380,8 @@ def TIME_SERIES_ALGO(df, bool_stat):
                     try:
                         model = SARIMAX(train, order=j, seasonal_order=k, enforce_stationarity=
                         False, enforce_invertibility=False).fit()
-                        y_prd = model.predict(start=test.index[0],
-                                              end=test.index[test.shape[0] - 1])
+                        y_prd = model.predict(start=test.index.values[0],
+                                              end=test.index.values[test.shape[0] - 1])
 
                         rs = sqrt(mean_squared_error(test.values, y_prd))
 

@@ -27,12 +27,12 @@ if __name__ == "__main__":
     df = args.dataframe
     target = args.target
 
-
+def start_time_series(file_path, target):
     #filling null values with the forward fiiling method
     #df = df.fillna(method = "ffill")
 
     path = "TIME_SERIES"+"/"
-    df = pd.read_csv(path+str(df) + ".csv")
+    df = pd.read_csv(file_path)
     col = df.columns
 
     if target not in col:

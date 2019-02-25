@@ -3,6 +3,7 @@ import MySQLdb
 import os
 import warnings
 import sys
+import pandas as pd
 
 warnings.filterwarnings('ignore')
 
@@ -95,8 +96,7 @@ def commit_results_db():
 
 
 def set_results_db(data):
-     print("here")
-     return "here"
+
      db = MySQLdb.connect("localhost", "root", "ayushpatidar@04", "AUTO_ML")
      print("db connected")
 
@@ -117,3 +117,159 @@ def set_results_db(data):
 
 
      db.close()
+
+
+def fetch_results():
+
+    db = MySQLdb.connect("localhost", "root", "ayushpatidar@04", "AUTO_ML")
+
+    try:
+        cur = db.cursor()
+        sql = "SELECT * FROM RESULTS"
+        cur.execute(sql)
+        #print("RESULTS ARE", cur.fetchall())
+
+        result  = list(cur.fetchall())
+
+        sql = "SHOW COLUMNS FROM RESULTS"
+        cur.execute(sql)
+        col = list(cur.fetchall())
+        cols = list()
+        for i in col:
+            cols.append(i[0])
+
+
+
+
+        print("COLUMNS ARE ",cols)
+        df = pd.DataFrame(result, columns=cols)
+
+        db.close()
+
+        return df
+
+
+    except Exception as e:
+        print("error while fetching results", e)
+
+
+
+def user_authentication(username, password):
+    #this function is used to check whether a user is authenticated or not
+    print("in authentication function")
+
+    db = MySQLdb.connect("localhost", "root", "ayushpatidar@04", "USER_LOGIN")
+    print("USER_DETAILS DB CONNECTED")
+
+    try:
+        cur = db.cursor()
+
+        sql = "SELECT USER_ID, PWD FROM DETAILS"
+        cur.execute(sql)
+
+        results = list(cur.fetchall())
+
+        print(results)
+        print(type(results))
+
+        if (username,password) in results:
+            #use exsist
+            return 1
+        else:
+            #user is not registered
+            return 0
+
+    except Exception as e:
+        print("error in user_authentication function", e)
+
+
+
+
+
+def create_user(username, password, f_name, l_name, city):
+
+    data = (username, f_name, l_name, password, city)
+
+    db = MySQLdb.connect("localhost", "root", "ayushpatidar@04", "USER_LOGIN")
+
+    print("db connected")
+
+    try:
+
+        cur = db.cursor()
+        sql = """INSERT INTO DETAILS(USER_ID, F_NAME  ,
+                L_NAME , PWD, CITY)
+                VALUES(%s, %s, %s, %s, %s)"""
+
+        cur.execute(sql, data)
+        db.commit()
+        print("result successfully added")
+
+
+
+    except Exception as e:
+        print("error in create_user DB ", e)
+
+
+    db.close()
+
+
+def create_user_table():
+    print("in create user db table")
+
+    db = MySQLdb.connect("localhost", "root", "ayushpatidar@04", "USER_LOGIN")
+    print("db connected")
+
+    try:
+        cur = db.cursor()
+        sql = "SHOW TABLES LIKE 'DETAILS'"
+        cur.execute(sql)
+
+        rs = cur.fetchone()
+
+        if rs:
+            print("USER TABLE ALREADY THERE")
+        else:
+            print("MAKE NEW USER TABLE")
+
+            sql =  """CREATE TABLE DETAILS(USER_ID VARCHAR(100) NOT NULL, F_NAME VARCHAR(100) NULL ,
+                L_NAME VARCHAR(100) NULL, PWD VARCHAR(100) NOT NULL, CITY VARCHAR(100) NULL,
+                PRIMARY KEY(USER_ID))"""
+            cur.execute(sql)
+            db.commit()
+
+
+    except Exception as e:
+        print("error in create_user_table ", e)
+
+    db.close()
+
+
+
+def auth_user_name(username):
+    #function checks for the unique unsername
+
+    db = MySQLdb.connect("localhost", "root", "ayushpatidar@04", "USER_LOGIN")
+    print("Db connected")
+
+    try:
+
+        cur = db.cursor()
+        sql = "SELECT USER_ID FROM DETAILS"
+
+        cur.execute(sql)
+
+        rs = list(cur.fetchall())
+
+        db.close()
+
+        if (username, ) in rs:
+            return 0
+        else:
+            return 1
+
+    except Exception as e:
+        print("error in auth_user_name ", e)
+
+
+    db.close()
