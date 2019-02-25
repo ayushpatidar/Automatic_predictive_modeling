@@ -243,3 +243,33 @@ def create_user_table():
         print("error in create_user_table ", e)
 
     db.close()
+
+
+
+def auth_user_name(username):
+    #function checks for the unique unsername
+
+    db = MySQLdb.connect("localhost", "root", "ayushpatidar@04", "USER_LOGIN")
+    print("Db connected")
+
+    try:
+
+        cur = db.cursor()
+        sql = "SELECT USER_ID FROM DETAILS"
+
+        cur.execute(sql)
+
+        rs = list(cur.fetchall())
+
+        db.close()
+
+        if (username, ) in rs:
+            return 0
+        else:
+            return 1
+
+    except Exception as e:
+        print("error in auth_user_name ", e)
+
+
+    db.close()

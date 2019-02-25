@@ -10,6 +10,7 @@ import MySQLdb
 from mysqlclient import user_authentication
 from mysqlclient import create_user
 from mysqlclient import create_user_table
+from mysqlclient import auth_user_name
 
 
 @app.route('/register', methods = ["POST", "GET"])
@@ -20,15 +21,15 @@ def register_user():
 
         create_user_table()
 
-        create_user(request.form["auth_user"], request.form["auth_pass"],
+        rs = auth_user_name(request.form["auth_user"])
+        if rs==1:
+            create_user(request.form["auth_user"], request.form["auth_pass"],
                     request.form["first_name"], request.form["last_name"],
                     request.form["city"])
+            return ("REGISTERED PLEASE GOT TO LOGIN PAGE")
 
-
-
-        return ("REGISTERED PLEASE GOT TO LOGIN PAGE")
-
-
+        else:
+            return ("USER_NAME ALREADY EXSIST")
 
 
     return  render_template("register.html", user_image = "static/images/logo.png")
