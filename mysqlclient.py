@@ -95,7 +95,8 @@ def commit_results_db():
 
 
 def set_results_db(data):
-
+     print("here")
+     return "here"
      db = MySQLdb.connect("localhost", "root", "ayushpatidar@04", "AUTO_ML")
      print("db connected")
 
